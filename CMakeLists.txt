@@ -18,6 +18,8 @@ file(GLOB HEADER
     "*.h"
     "*.hpp"
 )
+add_subdirectory(data)
+add_subdirectory(entity)
 add_library(${target} SHARED ${SRC})
 find_package(Qt5Core REQUIRED)
 find_package(Qt5HttpServer REQUIRED)
