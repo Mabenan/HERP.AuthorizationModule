@@ -7,32 +7,22 @@
 
 #include <data/AuthObject.h>
 #include <QxOrm_Impl.h>
-
-QX_REGISTER_CPP(AuthObject)
+#include <data/AuthObjectParam.h>
+HERP_REGISTER_CPP_HERP_AUTHORIZATION_MODULE(AuthObject)
 
 namespace qx {
 template<> void register_class(QxClass<AuthObject> &t) {
-	qx::IxDataMember *pData = NULL;
-	Q_UNUSED(pData);
-	qx::IxSqlRelation *pRelation = NULL;
-	Q_UNUSED(pRelation);
-	qx::IxFunction *pFct = NULL;
-	Q_UNUSED(pFct);
-	qx::IxValidator *pValidator = NULL;
-	Q_UNUSED(pValidator);
 	t.setName("t_auth_object");
-	t.id(&AuthObject::id, "id");
-	t.data(&AuthObject::name, "name");
-	pRelation = t.relationOneToMany(&AuthObject::params, "Params",
-			"AuthObjectParam", 0);
-	pRelation->getDataMember()->setName("params");
+	t.id(&AuthObject::m_id, "auth_object_id");
+	t.data(&AuthObject::m_name, "name");
+	t.relationOneToMany(& AuthObject::m_params, "list_auth_object_param", "auth_object_id");
 }
 }
 
 AuthObject::AuthObject() {
 
-	this->id = 0;
-	this->name = "";
+	this->m_id = 0;
+	this->m_name = "";
 
 }
 

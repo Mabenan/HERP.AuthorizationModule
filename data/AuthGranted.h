@@ -8,14 +8,14 @@
 #ifndef REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHGRANTED_H_
 #define REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHGRANTED_H_
 
-#include <QxOrm.h>
-class AuthGranted {
+#include <precompiled.h>
+class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthGranted {
 public:
 	long id;
 public:
 	AuthGranted();
 	virtual ~AuthGranted();
 };
-QX_REGISTER_HPP(AuthGranted, qx::trait::no_base_class_defined, 0)
+HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthGranted, qx::trait::no_base_class_defined, 0)
 
 #endif /* REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHGRANTED_H_ */

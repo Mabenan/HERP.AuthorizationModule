@@ -7,13 +7,16 @@
 
 #include <data/AuthGroup.h>
 #include <QxOrm_Impl.h>
+#include <data/AuthUser.h>
 
-QX_REGISTER_CPP(AuthGroup)
+HERP_REGISTER_CPP_HERP_AUTHORIZATION_MODULE(AuthGroup)
 
 namespace qx{
 	template <> void register_class(QxClass<AuthGroup> & t){
 		t.setName("t_auth_group");
-		t.id(& AuthGroup::id, "id");
+		t.id(& AuthGroup::id, "auth_group_id");
+		t.data(& AuthGroup::m_name, "name");
+		t.relationManyToMany(& AuthGroup::m_auth_users, "list_auth_user","t_auth_user_group", "auth_group_id", "auth_user_id");
 	}
 }
 

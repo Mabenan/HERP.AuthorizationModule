@@ -8,12 +8,12 @@
 #include <data/AuthGranted.h>
 #include <QxOrm_Impl.h>
 
-QX_REGISTER_CPP(AuthGranted)
+HERP_REGISTER_CPP_HERP_AUTHORIZATION_MODULE(AuthGranted)
 
 namespace qx{
 	template <> void register_class(QxClass<AuthGranted> & t){
 		t.setName("t_auth_granted");
-		t.id(& AuthGranted::id, "id");
+		t.id(& AuthGranted::id, "auth_granted_id");
 	}
 }
 

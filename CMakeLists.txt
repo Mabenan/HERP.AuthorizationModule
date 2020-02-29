@@ -3,7 +3,7 @@ if(NOT CMAKE_PROJECT_NAME)
 project(${target} LANGUAGES CXX)
 endif()
 set(target "HERP.AuthorizationModule")
-
+add_definitions(-D_BUILDING_HERP_AUTHORIZATION_MODULE)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 11)
@@ -17,10 +17,16 @@ file(GLOB SRC
 file(GLOB HEADER
     "*.h"
     "*.hpp"
-)
+    )
 add_subdirectory(data)
 add_subdirectory(entity)
+add_subdirectory(command)
 add_library(${target} SHARED ${SRC})
+
+target_precompile_headers(${target}
+ PUBLIC
+  "precompiled.h"
+ )
 find_package(Qt5Core REQUIRED)
 find_package(Qt5HttpServer REQUIRED)
 if(${PACKAGE})
