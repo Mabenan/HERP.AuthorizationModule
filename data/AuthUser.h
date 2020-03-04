@@ -8,9 +8,9 @@
 #ifndef REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHUSER_H_
 #define REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHUSER_H_
 
-#include <precompiled.h>
 #include <QString>
 #include <data/AuthGroup.h>
+#include <HERP.AuthorizationModule.Precompiled.h>
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUser{
 
 public:

@@ -9,7 +9,7 @@
 #define REPS_HERP_AUTHORIZATIONMODULE_AUTHORIZATIONMODULEPLUGIN_H_
 
 #include <ApplicationServerPluginInterface.h>
-#include <precompiled.h>
+#include <HERP.AuthorizationModule.Precompiled.h>
 
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthorizationModulePlugin: public ApplicationServerPluginInterface {
 

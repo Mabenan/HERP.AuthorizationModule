@@ -25,7 +25,7 @@ add_library(${target} SHARED ${SRC})
 
 target_precompile_headers(${target}
  PUBLIC
-  "precompiled.h"
+  "HERP.AuthorizationModule.Precompiled.h"
  )
 find_package(Qt5Core REQUIRED)
 find_package(Qt5HttpServer REQUIRED)
