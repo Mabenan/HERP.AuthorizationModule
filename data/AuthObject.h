@@ -10,20 +10,20 @@
 #include <precompiled.h>
 #include <QString>
 #include <QxOrm.h>
-class AuthObjectParam;
+class AuthGroup;
 
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthObject {
 public:
-	   typedef std::shared_ptr<AuthObjectParam> auth_object_param_ptr;
-	   typedef std::vector<auth_object_param_ptr> list_auth_object_param;
-	long m_id;
-	QString m_name;
-	list_auth_object_param m_params;
+	typedef std::shared_ptr<AuthGroup> auth_group_ptr;
+	typedef std::vector<auth_group_ptr> list_auth_group;
+	QString m_id;
+	list_auth_group m_auth_groups;
 public:
 	AuthObject();
 	virtual ~AuthObject();
 };
-HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthObject, qx::trait::no_base_class_defined, 0)
+QX_REGISTER_PRIMARY_KEY(AuthObject, QString);
+HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthObject, qx::trait::no_base_class_defined, 0);
 
 
 typedef std::shared_ptr<AuthObject> auth_object_ptr;

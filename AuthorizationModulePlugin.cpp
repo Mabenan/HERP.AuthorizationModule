@@ -8,6 +8,9 @@
 #include <AuthorizationModulePlugin.h>
 #include <command/ListAuthGroupCommand.h>
 #include <data/AuthGroup.h>
+#include <data/AuthObject.h>
+#include <data/AuthUser.h>
+#include <command/AuthProvider.h>
 
 AuthorizationModulePlugin::AuthorizationModulePlugin(QObject *parent) : ApplicationServerPluginInterface(parent) {
 	// TODO Auto-generated constructor stub
@@ -21,8 +24,11 @@ AuthorizationModulePlugin::~AuthorizationModulePlugin() {
 void AuthorizationModulePlugin::init(ApplicationServerInterface *app) {
 
 	app->registerCommand(new ListAuthGroupCommand(this));
+	app->registerAuthProvider(new AuthProvider(this));
 
 }
 void AuthorizationModulePlugin::install(ApplicationServerInterface * app){
 	qx::dao::create_table<AuthGroup>();
+	qx::dao::create_table<AuthUser>();
+	qx::dao::create_table<AuthObject>();
 }

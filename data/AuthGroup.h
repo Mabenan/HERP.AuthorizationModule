@@ -10,18 +10,20 @@
 
 #include <precompiled.h>
 #include <QString>
+#include <data/AuthObject.h>
 class AuthUser;
 
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthGroup {
 public:
 	typedef std::vector<std::shared_ptr<AuthUser>> list_auth_user;
-	long id;
 	QString m_name;
 	list_auth_user m_auth_users;
+	list_auth_object m_auths_granted;
 public:
 	AuthGroup();
 	virtual ~AuthGroup();
 };
+QX_REGISTER_PRIMARY_KEY(AuthGroup, QString);
 HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthGroup, qx::trait::no_base_class_defined, 0)
 
 

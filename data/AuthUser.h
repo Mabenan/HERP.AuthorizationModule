@@ -14,11 +14,12 @@
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUser{
 
 public:
-	long id;
+	QString name;
+	QString pass;
 	list_auth_group m_auth_groups;
 };
-
-HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthUser, qx::trait::no_base_class_defined, 0)
+QX_REGISTER_PRIMARY_KEY(AuthUser, QString);
+HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthUser, qx::trait::no_base_class_defined, 0);
 
 typedef std::shared_ptr<AuthUser> auth_user_param_ptr;
 typedef std::vector<auth_user_param_ptr> list_auth_user_param;
