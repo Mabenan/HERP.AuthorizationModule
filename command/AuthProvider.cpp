@@ -14,26 +14,33 @@ QString AuthProvider::getName() const {
 
 int AuthProvider::isUserAuthorized(QString user, QString authObject,
 		QMap<QString, QVariant> params, ApplicationServerInterface *app) {
-	AuthUser * authUser;
+	AuthUser *authUser = new AuthUser();
 	authUser->name = user;
-	if(qx::dao::exist(authUser)){
+	if (qx::dao::exist(authUser)) {
 		qx::dao::fetch_by_id_with_all_relation(authUser);
-		for(auth_group_ptr authGroup : authUser->m_auth_groups){
-			qx::dao::fetch_by_id_with_all_relation(authGroup);
-			for(auth_object_ptr authObjectData : authGroup->m_auths_granted){
-				if(authObjectData->m_id == authObject)
-					return 0;
+		if (params.contains("auth_guid")
+				&& params["auth_guid"] == authUser->authGuid) {
+			for (auth_group_ptr authGroup : authUser->m_auth_groups) {
+				qx::dao::fetch_by_id_with_all_relation(authGroup);
+				for (auth_object_ptr authObjectData : authGroup->m_auths_granted) {
+					if (authObjectData->m_id == authObject)
+						return 0;
+				}
 			}
+
+		} else {
+			return -1;
 		}
 		return 1;
-	}else{
+	} else {
 		return 1;
 	}
 	return -1;
 
 }
 
-AuthProvider::AuthProvider(QObject *parent) : AuthProviderInterface(parent) {
+AuthProvider::AuthProvider(QObject *parent) :
+		AuthProviderInterface(parent) {
 }
 
 AuthProvider::~AuthProvider() {

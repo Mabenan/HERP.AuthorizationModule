@@ -11,6 +11,7 @@
 #include <data/AuthObject.h>
 #include <data/AuthUser.h>
 #include <command/AuthProvider.h>
+#include <webServices/WebAuthorization.h>
 
 AuthorizationModulePlugin::AuthorizationModulePlugin(QObject *parent) : ApplicationServerPluginInterface(parent) {
 	// TODO Auto-generated constructor stub
@@ -25,6 +26,7 @@ void AuthorizationModulePlugin::init(ApplicationServerInterface *app) {
 
 	app->registerCommand(new ListAuthGroupCommand(this));
 	app->registerAuthProvider(new AuthProvider(this));
+	app->registerWebInterface(new WebAuthorization(this));
 
 }
 void AuthorizationModulePlugin::install(ApplicationServerInterface * app){

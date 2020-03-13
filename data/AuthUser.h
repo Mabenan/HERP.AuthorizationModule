@@ -15,6 +15,7 @@ class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUser{
 
 public:
 	QString name;
+	QString authGuid;
 	QString pass;
 	list_auth_group m_auth_groups;
 };

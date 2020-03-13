@@ -20,6 +20,7 @@ file(GLOB HEADER
 add_subdirectory(data)
 add_subdirectory(entity)
 add_subdirectory(command)
+add_subdirectory(webServices)
 add_library(${target} SHARED ${SRC})
 
 target_precompile_headers(${target}

@@ -15,6 +15,7 @@ namespace qx{
 		t.setName("t_auth_user");
 		t.id(& AuthUser::name, "auth_user_name");
 		t.data(& AuthUser::pass, "pass");
+		t.data(& AuthUser::authGuid,"auth_guid");
 		t.relationManyToMany(& AuthUser::m_auth_groups, "list_auth_group", "t_auth_user_group", "auth_user_name", "auth_group_id");
 	}
 }
