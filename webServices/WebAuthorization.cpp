@@ -60,9 +60,7 @@ QHttpServerResponse WebAuthorization::execute(const QHttpServerRequest *request,
 				QJsonDocument::fromJson(request->body(), &parseError).object();
 		user = jsonRequest["user"].toString();
 		QString password = jsonRequest["password"].toString();
-		QByteArray hashedByte = QCryptographicHash::hash(password.toUtf8(),
-				QCryptographicHash::Sha256);
-		QString passwordHash = QString::fromUtf8(hashedByte);
+		QString passwordHash = QString(QCryptographicHash::hash(password.toUtf8(),QCryptographicHash::Sha256).toHex());
 		userObject->name = user;
 		if (qx::dao::exist(userObject)) {
 			qx::dao::fetch_by_id(userObject);
