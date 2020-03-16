@@ -39,7 +39,7 @@ target_include_directories(${target} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${INCLUDE_FOLDER}>
 )    
-target_link_libraries(${target} ApplicationServerInterface ApplicationServerCore QxOrm)
+target_link_libraries(${target} ApplicationServerInterface ApplicationServerCore QxOrm ODataServer)
 
 install(TARGETS ${target} EXPORT ${target} 
 LIBRARY DESTINATION "${LIB_FOLDER}"
