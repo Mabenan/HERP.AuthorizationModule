@@ -27,7 +27,7 @@ void UserEntitySet::getSet(QUrlQuery query, QVariantMap head) {
 
 UserEntitySet::UserEntitySet() : ODataEntitySet() {
 	this->entity = new UserEntity();
-	this->name = "RouteSet";
+	this->name = "UserSet";
 }
 
 UserEntitySet::~UserEntitySet() {

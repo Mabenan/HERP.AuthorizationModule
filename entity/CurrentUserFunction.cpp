@@ -29,7 +29,11 @@ ODataEntity* CurrentUserFunction::call(QMap<QString, QVariant> keys,
 		qx::dao::fetch_by_id(userObject);
 		if(userObject->authGuid == auth_guid){
 			userEntity->data.insert("name", userObject->name);
+		}else{
+			userEntity->data.insert("name", "");
 		}
+	}else{
+		userEntity->data.insert("name", "");
 	}
 	return userEntity;
 }
