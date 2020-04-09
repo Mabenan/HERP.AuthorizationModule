@@ -46,6 +46,7 @@ QHttpServerResponse WebAuthorization::execute(const QHttpServerRequest *request,
 			if (userObject->authGuid == auth_guid) {
 				userObject->authGuid = "";
 				qx::dao::save(userObject);
+				return jsonResult;
 			} else {
 				return QHttpServerResponse(
 						QHttpServerResponse::StatusCode::Unauthorized);
@@ -54,7 +55,6 @@ QHttpServerResponse WebAuthorization::execute(const QHttpServerRequest *request,
 			return QHttpServerResponse(
 					QHttpServerResponse::StatusCode::Unauthorized);
 		}
-		return QHttpServerResponse(QHttpServerResponse::StatusCode::Ok);
 	} else if (request->url().path() == "/api/login") {
 		jsonRequest =
 				QJsonDocument::fromJson(request->body(), &parseError).object();

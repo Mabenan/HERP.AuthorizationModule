@@ -13,7 +13,8 @@
 #include <command/AuthProvider.h>
 #include <webServices/WebAuthorization.h>
 #include <entity/UserEntitySet.h>
-#include <entity/CurrentUserFunction.h>
+#include <data/AppRoute.h>
+#include <data/PluginFolder.h>
 
 AuthorizationModulePlugin::AuthorizationModulePlugin(QObject *parent) : ApplicationServerPluginInterface(parent) {
 	// TODO Auto-generated constructor stub
@@ -29,12 +30,18 @@ void AuthorizationModulePlugin::init(ApplicationServerInterface *app) {
 	app->registerCommand(new ListAuthGroupCommand(this));
 	app->registerAuthProvider(new AuthProvider(this));
 	app->registerWebInterface(new WebAuthorization(this));
+	AppRoute * appRoute = new AppRoute();
+	appRoute->routeName = "Settings";
+	appRoute->viewKey = "auth.view.Settings";
+	appRoute->neededAuthObject = "ALL_USER";
+	appRoute->hiddenRoute = true;
+	app->addValue("APP_FRONTEND_ROUTES", appRoute);
 	ODataEntityContainer * routeEntityContainer = new ODataEntityContainer();
-	ODataSchema * schema1 = new ODataSchema("Authorization", routeEntityContainer);
 
 	routeEntityContainer->entitySets.insert("UserSet", new UserEntitySet());
-	routeEntityContainer->functions.insert("CurrentUser", new CurrentUserFunction());
-	app->addValue("ODATA_SCHEMA_MAP", schema1);
+	app->addValue("ODATA_ENTITY_MAP", routeEntityContainer);
+
+	app->addValue("PLUGIN_FOLDERS", new PluginFolder("auth"));
 
 }
 void AuthorizationModulePlugin::install(ApplicationServerInterface * app){

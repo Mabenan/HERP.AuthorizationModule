@@ -20,6 +20,10 @@ int AuthProvider::isUserAuthorized(QString user, QString authObject,
 		qx::dao::fetch_by_id_with_all_relation(authUser);
 		if (params.contains("auth_guid")
 				&& params["auth_guid"] == authUser->authGuid) {
+
+			if(authObject == "ALL_USER"){
+				return 0;
+			}
 			for (auth_group_ptr authGroup : authUser->m_auth_groups) {
 				qx::dao::fetch_by_id_with_all_relation(authGroup);
 				for (auth_object_ptr authObjectData : authGroup->m_auths_granted) {

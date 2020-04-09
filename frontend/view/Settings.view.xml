@@ -1,0 +1,35 @@
+<mvc:View
+ controllerName="herp.appframework.auth.controller.Settings"
+ xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+ xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+ height="100%">
+ <Page showHeader="false">
+		<f:SimpleForm id="userSettings"
+			editable="true"
+			layout="ResponsiveGridLayout"
+			title="Address"
+			labelSpanXL="3"
+			labelSpanL="3"
+			labelSpanM="3"
+			labelSpanS="12"
+			adjustLabelSpan="false"
+			emptySpanXL="4"
+			emptySpanL="4"
+			emptySpanM="4"
+			emptySpanS="0"
+			columnsXL="1"
+			columnsL="1"
+			columnsM="1"
+
+			singleContainerFullSize="false" >
+			<f:content>
+				<Label text="Name" />
+				<Input editable="false" id="nameText" value="{default>name}" />
+				<Label text="Password" />
+				<Input value="{default>/pass}" />
+			</f:content>
+		</f:SimpleForm>
+ </Page>
+ </mvc:View>

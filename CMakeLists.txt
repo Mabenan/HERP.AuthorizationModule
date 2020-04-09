@@ -39,8 +39,9 @@ target_include_directories(${target} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${INCLUDE_FOLDER}>
 )    
-target_link_libraries(${target} ApplicationServerInterface ApplicationServerCore QxOrm ODataServer)
-
+target_link_libraries(${target} ApplicationServerInterface ApplicationServerCore QxOrm ODataServer HERP.FrontendInterface)
+file(COPY "frontend/controller" DESTINATION ${CMAKE_BINARY_DIR}/bin/frontend/plugins/auth)
+file(COPY "frontend/view" DESTINATION ${CMAKE_BINARY_DIR}/bin/frontend/plugins/auth)
 install(TARGETS ${target} EXPORT ${target} 
 LIBRARY DESTINATION "${LIB_FOLDER}"
     ARCHIVE DESTINATION "${LIB_FOLDER}"
