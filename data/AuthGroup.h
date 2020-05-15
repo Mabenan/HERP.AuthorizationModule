@@ -13,7 +13,7 @@
 #include <HERP.AuthorizationModule.Precompiled.h>
 class AuthUser;
 
-class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthGroup {
+class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthGroup  {
 public:
 	typedef std::vector<std::shared_ptr<AuthUser>> list_auth_user;
 	QString m_name;

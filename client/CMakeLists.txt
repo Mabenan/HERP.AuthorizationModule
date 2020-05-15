@@ -2,13 +2,13 @@ cmake_minimum_required(VERSION 3.5)
 if(NOT CMAKE_PROJECT_NAME)
 project(${target} LANGUAGES CXX)
 endif()
-set(target "HERP.AuthorizationModule.Server")
+set(target "HERP.AuthorizationModule.Client")
 add_definitions(-D_BUILDING_HERP_AUTHORIZATION_MODULE)
-add_definitions(-D_QX_ENABLE_QT_NETWORK)
+add_definitions(-D_APP_CLIENT)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/plugins/server)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/plugins/client)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -19,37 +19,31 @@ file(GLOB HEADER
     "*.h"
     "*.hpp"
     )
-add_subdirectory(data)
-add_subdirectory(dataService)
-add_subdirectory(command)
-add_subdirectory(webServices)
+add_subdirectory(../data ${CMAKE_BINARY_DIR}/../HERP.AuthorizationModule.Client.data)
+add_subdirectory(../dataService ${CMAKE_BINARY_DIR}/../HERP.AuthorizationModule.Client.dataService)
 add_library(${target} SHARED ${SRC})
 
-target_precompile_headers(${target}
- PUBLIC
-  "HERP.AuthorizationModule.Precompiled.h"
- )
 find_package(Qt5Core REQUIRED)
-find_package(Qt5HttpServer REQUIRED)
+find_package(Qt5Gui REQUIRED)
+find_package(Qt5Widgets REQUIRED)
 if(${PACKAGE})
-find_package(ApplicationServer)
+find_package(ApplicationClient)
 endif()
-qt5_use_modules(${target} Core HttpServer)
+qt5_use_modules(${target} Core Gui Widgets)
 
 target_include_directories(${target} PUBLIC 
  PUBLIC 
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${INCLUDE_FOLDER}>
 )    
-target_link_libraries(${target} ApplicationServerInterface ApplicationServerCore QxOrm)
+target_link_libraries(${target} ApplicationClientInterface ApplicationClientCore QxOrm)
 install(TARGETS ${target} EXPORT ${target} 
 LIBRARY DESTINATION "${LIB_FOLDER}"
     ARCHIVE DESTINATION "${LIB_FOLDER}"
-    RUNTIME DESTINATION "${PLUGIN_FOLDER}/server"
+    RUNTIME DESTINATION "${PLUGIN_FOLDER}/client"
     INCLUDES DESTINATION "${INCLUDE_FOLDER}")
 install(
   EXPORT ${target} 
   DESTINATION ${LIB_FOLDER}
   )
 install(FILES ${HEADER} DESTINATION ${INCLUDE_FOLDER})
-add_subdirectory(client)

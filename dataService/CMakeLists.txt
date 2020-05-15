@@ -1,3 +1,6 @@
+
+add_definitions(-D_BUILDING_HERP_AUTHORIZATION_MODULE)
+add_definitions(-D_QX_ENABLE_QT_NETWORK)
 file(GLOB SRCl
     "*.cpp"
 )
