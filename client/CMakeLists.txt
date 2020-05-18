@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 if(NOT CMAKE_PROJECT_NAME)
 project(${target} LANGUAGES CXX)
 endif()
+include(../../QxOrm/QxOrm.cmake)
 set(target "HERP.AuthorizationModule.Client")
 add_definitions(-D_BUILDING_HERP_AUTHORIZATION_MODULE)
 add_definitions(-D_APP_CLIENT)
@@ -37,13 +38,9 @@ target_include_directories(${target} PUBLIC
     $<INSTALL_INTERFACE:${INCLUDE_FOLDER}>
 )    
 target_link_libraries(${target} ApplicationClientInterface ApplicationClientCore QxOrm)
-install(TARGETS ${target} EXPORT ${target} 
+install(TARGETS ${target}
 LIBRARY DESTINATION "${LIB_FOLDER}"
     ARCHIVE DESTINATION "${LIB_FOLDER}"
     RUNTIME DESTINATION "${PLUGIN_FOLDER}/client"
     INCLUDES DESTINATION "${INCLUDE_FOLDER}")
-install(
-  EXPORT ${target} 
-  DESTINATION ${LIB_FOLDER}
-  )
 install(FILES ${HEADER} DESTINATION ${INCLUDE_FOLDER})

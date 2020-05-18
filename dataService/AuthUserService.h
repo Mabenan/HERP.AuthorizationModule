@@ -11,7 +11,6 @@
 #include <QString>
 #include <data/AuthUser.h>
 #include <HERP.AuthorizationModule.Precompiled.h>
-#include <IxParameter.h>
 #include <QxServices.h>
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUserInput : public qx::service::IxParameter{
 	QX_SERVICE_IX_PARAMETER_SERIALIZATION_HPP(AuthUserInput);
