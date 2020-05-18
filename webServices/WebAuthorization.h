@@ -9,16 +9,18 @@
 #define REPS_HERP_AUTHORIZATIONMODULE_WEBSERVICES_WEBAUTHORIZATION_H_
 
 #include <WebInterface.h>
+#include "HERP.AuthorizationModule.Precompiled.h"
 
 class WebAuthorization: public WebInterface {
+
 	Q_OBJECT
 public:
 	WebAuthorization(QObject *parent = nullptr);
 	virtual ~WebAuthorization();
-	virtual QString getName() const;
-	virtual QString getRoute(ApplicationServerInterface *app);
-	virtual QHttpServerResponse execute(const QHttpServerRequest *request,
-			ApplicationServerInterface *app);
+	QString getName() const;
+	QString getRoute(ApplicationServerInterface *app);
+    void execute(qx::QxHttpRequest  & request, qx::QxHttpResponse & response, ApplicationServerInterface * app);
+
 };
 
 #endif /* REPS_HERP_AUTHORIZATIONMODULE_WEBSERVICES_WEBAUTHORIZATION_H_ */

@@ -31,11 +31,10 @@ target_precompile_headers(${target}
   "HERP.AuthorizationModule.Precompiled.h"
  )
 find_package(Qt5Core REQUIRED)
-find_package(Qt5HttpServer REQUIRED)
 if(${PACKAGE})
 find_package(ApplicationServer)
 endif()
-qt5_use_modules(${target} Core HttpServer)
+qt5_use_modules(${target} Core)
 
 target_include_directories(${target} PUBLIC 
  PUBLIC 
