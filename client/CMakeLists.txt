@@ -22,8 +22,12 @@ file(GLOB HEADER
     )
 add_subdirectory(../data ${CMAKE_BINARY_DIR}/../HERP.AuthorizationModule.Client.data)
 add_subdirectory(../dataService ${CMAKE_BINARY_DIR}/../HERP.AuthorizationModule.Client.dataService)
-add_library(${target} SHARED ${SRC})
 
+add_library(${target} SHARED ${SRC})
+target_precompile_headers(${target}
+ PUBLIC
+  "../HERP.AuthorizationModule.Precompiled.h"
+ )
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)

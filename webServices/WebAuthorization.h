@@ -19,7 +19,7 @@ public:
 	virtual ~WebAuthorization();
 	QString getName() const;
 	QString getRoute(ApplicationServerInterface *app);
-    void execute(qx::QxHttpRequest  & request, qx::QxHttpResponse & response, ApplicationServerInterface * app);
+    virtual void execute(qx::QxHttpRequest  & request, qx::QxHttpResponse & response, ApplicationServerInterface * app);
 
 };
 

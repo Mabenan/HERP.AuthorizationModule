@@ -10,6 +10,7 @@
 
 #include <QxOrm.h>
 #include <QxServices.h>
+#include <QxHttpServer/QxHttpServer.h>
 #include <export.h>
 
 #endif /* REPS_HERP_AUTHORIZATIONMODULE_HERP_AUTHORIZATIONMODULE_PRECOMPILED_H_ */
