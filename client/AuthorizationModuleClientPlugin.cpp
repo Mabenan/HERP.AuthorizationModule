@@ -20,13 +20,13 @@ AuthorizationModuleClientPlugin::~AuthorizationModuleClientPlugin() {
 	// TODO Auto-generated destructor stub
 }
 
-void AuthorizationModuleClientPlugin::init(ApplicationClientInterface *app) {
+void AuthorizationModuleClientPlugin::init(ApplicationClientInterface * /*app*/) {
 
   AuthUserService service ;
   service.fetch_all();
 
   list_auth_user output = (service.isValidWithOutput() ? service.getOutputParameter()->list_of_users : list_auth_user());
-  qDebug() << QString(QString("qxClient - get all users") + QString("database contains '") + QString::number(output.size()) + QString("' user(s)."));
+  qDebug() << QString(QLatin1String("qxClient - get all users") + QLatin1String("database contains '") + QString::number(output.size()) + QStringLiteral("' user(s)."));
 
 }
 void AuthorizationModuleClientPlugin::install(ApplicationClientInterface * app){

@@ -24,18 +24,18 @@ QString WebAuthorization::getName() const {
 	return "webAuth";
 }
 
-QString WebAuthorization::getRoute(ApplicationServerInterface *app) {
+QString WebAuthorization::getRoute(ApplicationServerInterface * /*app*/) {
 	return "\/api\/(login|logout)";
 }
 
-void WebAuthorization::execute(qx::QxHttpRequest  & request, qx::QxHttpResponse & response, ApplicationServerInterface * app) {
+void WebAuthorization::execute(qx::QxHttpRequest  & request, qx::QxHttpResponse & response, ApplicationServerInterface *  /*app*/) {
 	QJsonObject jsonRequest;
 	QJsonObject jsonResult;
-	QJsonParseError parseError;
+	QJsonParseError parseError{};
 	QString user;
-	AuthUser *userObject = new AuthUser();
+	auto *userObject = new AuthUser();
 	if (request.url().path() == "/api/logout") {
-		QJsonParseError parseError;
+		QJsonParseError parseError{};
 		jsonRequest =
 				QJsonDocument::fromJson(request.data(), &parseError).object();
 		QString user = jsonRequest["user"].toString();

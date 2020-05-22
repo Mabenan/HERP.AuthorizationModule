@@ -24,6 +24,5 @@ AuthObject::AuthObject() {
 
 }
 
-AuthObject::~AuthObject() {
-}
+AuthObject::~AuthObject() = default;
 

@@ -28,7 +28,7 @@ void AuthorizationModulePlugin::init(ApplicationServerInterface *app) {
 	app->registerWebInterface(new WebAuthorization(this));
 
 }
-void AuthorizationModulePlugin::install(ApplicationServerInterface * app){
+void AuthorizationModulePlugin::install(ApplicationServerInterface *  /*app*/){
 	qx::dao::create_table<AuthGroup>();
 	qx::dao::create_table<AuthUser>();
 	qx::dao::create_table<AuthObject>();

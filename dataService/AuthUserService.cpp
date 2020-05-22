@@ -8,6 +8,8 @@
 #include <dataService/AuthUserService.h>
 #include <QxOrm_Impl.h>
 
+#include <memory>
+
 HERP_REGISTER_CPP_HERP_AUTHORIZATION_MODULE(AuthUserInput)
 HERP_REGISTER_CPP_HERP_AUTHORIZATION_MODULE(AuthUserOutput)
 HERP_REGISTER_CPP_HERP_AUTHORIZATION_MODULE(AuthUserService)
@@ -92,7 +94,7 @@ void AuthUserService::fetch_all()
 {
 	list_auth_user users;
 	   qx::dao::fetch_all(users);
-	   auth_user_service_output_ptr output = auth_user_service_output_ptr(new AuthUserOutput());
+	   auth_user_service_output_ptr output = std::make_shared<AuthUserOutput>();
 	   output->list_of_users = users;
 	   setOutputParameter(output);
 	   setMessageReturn(true);

@@ -18,9 +18,9 @@ class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthorizationModulePlugin: public App
     Q_INTERFACES(ApplicationServerPluginInterface)
 public:
 	AuthorizationModulePlugin(QObject *parent = nullptr);
-	virtual ~AuthorizationModulePlugin();
-	virtual void init(ApplicationServerInterface *app);
-	virtual void install(ApplicationServerInterface *app);
+	~AuthorizationModulePlugin() override;
+	void init(ApplicationServerInterface *app) override;
+	void install(ApplicationServerInterface *app) override;
 };
 
 #endif /* REPS_HERP_AUTHORIZATIONMODULE_AUTHORIZATIONMODULEPLUGIN_H_ */

@@ -16,10 +16,10 @@ class WebAuthorization: public WebInterface {
 	Q_OBJECT
 public:
 	WebAuthorization(QObject *parent = nullptr);
-	virtual ~WebAuthorization();
-	QString getName() const;
-	QString getRoute(ApplicationServerInterface *app);
-    virtual void execute(qx::QxHttpRequest  & request, qx::QxHttpResponse & response, ApplicationServerInterface * app);
+	~WebAuthorization() override;
+	QString getName() const override;
+	QString getRoute(ApplicationServerInterface *app) override;
+    void execute(qx::QxHttpRequest  & request, qx::QxHttpResponse & response, ApplicationServerInterface * app) override;
 
 };
 

@@ -15,7 +15,7 @@ class AuthUser;
 
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthGroup  {
 public:
-	typedef std::vector<std::shared_ptr<AuthUser>> list_auth_user;
+	using list_auth_user = std::vector<std::shared_ptr<AuthUser> >;
 	QString m_name;
 	list_auth_user m_auth_users;
 	list_auth_object m_auths_granted;
@@ -27,7 +27,7 @@ QX_REGISTER_PRIMARY_KEY(AuthGroup, QString);
 HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthGroup, qx::trait::no_base_class_defined, 0)
 
 
-typedef std::shared_ptr<AuthGroup> auth_group_ptr;
-typedef std::vector<auth_group_ptr> list_auth_group;
+using auth_group_ptr = std::shared_ptr<AuthGroup>;
+using list_auth_group = std::vector<auth_group_ptr>;
 typedef qx::QxCollection<long, auth_group_ptr> map_auth_group;
 #endif /* REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHGROUP_H_ */
