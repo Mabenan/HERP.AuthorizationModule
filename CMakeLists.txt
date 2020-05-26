@@ -36,12 +36,12 @@ find_package(ApplicationServer)
 endif()
 qt5_use_modules(${target} Core)
 
-target_include_directories(${target} PUBLIC 
- PUBLIC 
+target_include_directories(${target} PUBLIC
+ PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${INCLUDE_FOLDER}>
-)    
-target_link_libraries(${target} ApplicationServerInterface ApplicationServerCore QxOrm)
+)
+target_link_libraries(${target} ApplicationServerInterface QxOrm)
 install(TARGETS ${target}
 LIBRARY DESTINATION "${LIB_FOLDER}"
     ARCHIVE DESTINATION "${LIB_FOLDER}"
