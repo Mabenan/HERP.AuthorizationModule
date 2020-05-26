@@ -16,8 +16,8 @@ public:
 	AuthProvider(QObject *parent = nullptr);
 	~AuthProvider() override;
 	QString getName() const override;
-	int isUserAuthorized(const QString &user, QString authObject,
-			QMap<QString, QVariant> params, ApplicationServerInterface *app) override;
+    int isUserAuthorized(const QString &user, const QString &authObject,
+            const QMap<QString, QVariant> &params, ApplicationServerInterface *app) override;
 };
 
 #endif /* REPS_HERP_AUTHORIZATIONMODULE_AUTHPROVIDER_H_ */

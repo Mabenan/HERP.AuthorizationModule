@@ -45,7 +45,7 @@ typedef qx::service::QxService<AuthUserInput, AuthUserOutput>
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUserService
     : public auth_user_service_base_class {
 public:
-  AuthUserService() : auth_user_service_base_class("AuthUserService") { ; }
+    AuthUserService() : auth_user_service_base_class(QStringLiteral("AuthUserService")) { ; }
   ~AuthUserService() override { ; }
   void insert();
   void update();

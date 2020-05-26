@@ -5,24 +5,22 @@
  *      Author: daniel
  */
 
-#include <data/AuthObject.h>
 #include <QxOrm_Impl.h>
 #include <data/AuthGroup.h>
+#include <data/AuthObject.h>
 HERP_REGISTER_CPP_HERP_AUTHORIZATION_MODULE(AuthObject)
 
 namespace qx {
-template<> void register_class(QxClass<AuthObject> &t) {
-	t.setName("t_auth_object");
-	t.id(&AuthObject::m_id, "auth_object_id");
-	t.relationManyToMany(& AuthObject::m_auth_groups, "list_auth_groups", "t_auth_granted", "auth_object_id", "auth_group_id");
+template <> void register_class(QxClass<AuthObject> &t) {
+  t.setName(QStringLiteral("t_auth_object"));
+  t.id(&AuthObject::m_id, QStringLiteral("auth_object_id"));
+  t.relationManyToMany(
+      &AuthObject::m_auth_groups, QStringLiteral("list_auth_groups"),
+      QStringLiteral("t_auth_granted"), QStringLiteral("auth_object_id"),
+      QStringLiteral("auth_group_id"));
 }
-}
+} // namespace qx
 
-AuthObject::AuthObject() {
-
-	this->m_id = "";
-
-}
+AuthObject::AuthObject() { this->m_id = QLatin1String(); }
 
 AuthObject::~AuthObject() = default;
-
