@@ -15,15 +15,15 @@ class AuthUser;
 
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthGroup  {
 public:
-	using list_auth_user = std::vector<std::shared_ptr<AuthUser> >;
-	QString m_name;
-	list_auth_user m_auth_users;
-	list_auth_object m_auths_granted;
+    using list_auth_user = std::vector<std::shared_ptr<AuthUser> >;
+    QString m_name;
+    list_auth_user m_auth_users;
+    list_auth_object m_auths_granted;
 public:
-	AuthGroup();
-	virtual ~AuthGroup();
+    AuthGroup();
+    virtual ~AuthGroup();
 };
-QX_REGISTER_PRIMARY_KEY(AuthGroup, QString);
+QX_REGISTER_PRIMARY_KEY(AuthGroup, QString, m_name);
 HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthGroup, qx::trait::no_base_class_defined, 0)
 
 

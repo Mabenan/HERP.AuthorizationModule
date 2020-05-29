@@ -17,13 +17,10 @@
 #include <QxServices.h>
 #include <data/AuthUser.h>
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUserInput
-    : public AuthParameter<auth_user_ptr, list_auth_user_ptr> {
+    : public AuthParameter<AuthUser, list_auth_user_ptr> {
   QX_SERVICE_IX_PARAMETER_SERIALIZATION_HPP(AuthUserInput);
-
-public:
-  QString name;
 };
-using AuthUserInputBase = AuthParameter<auth_user_ptr, list_auth_user_ptr>;
+using AuthUserInputBase = AuthParameter<AuthUser, list_auth_user_ptr>;
 HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthUserInput, AuthUserInputBase, 0)
 using auth_user_service_input_ptr = std::shared_ptr<AuthUserInput>;
 

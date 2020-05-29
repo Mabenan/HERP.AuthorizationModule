@@ -19,7 +19,7 @@ public:
     QString pass;
     list_auth_group m_auth_groups;
 };
-QX_REGISTER_PRIMARY_KEY(AuthUser, QString);
+QX_REGISTER_PRIMARY_KEY(AuthUser, QString, name);
 HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthUser, qx::trait::no_base_class_defined, 0);
 
 using auth_user_ptr = std::shared_ptr<AuthUser>;
