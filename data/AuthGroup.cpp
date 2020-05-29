@@ -18,7 +18,7 @@ template <> void register_class(QxClass<AuthGroup> &t) {
   t.relationManyToMany(
       &AuthGroup::m_auth_users, QStringLiteral("list_auth_user"),
       QStringLiteral("t_auth_user_group"), QStringLiteral("auth_group_id"),
-      QStringLiteral("auth_user_id"));
+      QStringLiteral("auth_user_name"));
   t.relationManyToMany(
       &AuthGroup::m_auths_granted, QStringLiteral("list_auth_granted"),
       QStringLiteral("t_auth_granted"), QStringLiteral("auth_group_id"),

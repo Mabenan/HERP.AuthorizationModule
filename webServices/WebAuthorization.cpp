@@ -53,7 +53,11 @@ void WebAuthorization::execute(qx::QxHttpRequest &request,
       response.status() = 401;
     }
   } else if (request.url().path() == QLatin1String("/api/login")) {
-    jsonRequest = QJsonDocument::fromJson(request.data(), &parseError).object();
+    QByteArray data = request.data();
+    jsonRequest = QJsonDocument::fromJson(data, &parseError).object();
+    if(parseError.error){
+        qDebug() << parseError.errorString();
+    }
     user = jsonRequest.value(QLatin1String("user")).toString();
     QString password = jsonRequest.value(QLatin1String("password")).toString();
     QString passwordHash = QString::fromUtf8(
@@ -66,12 +70,13 @@ void WebAuthorization::execute(qx::QxHttpRequest &request,
         userObject->authGuid = QUuid::createUuid().toString();
         qx::dao::save(userObject);
       } else {
+        qDebug() << passwordHash;
         response.status() = 401;
       }
     } else {
       response.status() = 401;
     }
-    jsonResult.value(QLatin1String("auth_guid")) = userObject->authGuid;
+    jsonResult.insert(QLatin1String("auth_guid"), userObject->authGuid);
     response.data() = QJsonDocument(jsonResult).toJson();
   } else {
     response.status() = 401;

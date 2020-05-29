@@ -12,24 +12,25 @@
 #include <data/AuthUser.h>
 #include <command/AuthProvider.h>
 #include <webServices/WebAuthorization.h>
+#include <dataService/authservicebase.h>
 AuthorizationModulePlugin::AuthorizationModulePlugin(QObject *parent) : ApplicationServerPluginInterface(parent) {
-	// TODO Auto-generated constructor stub
+    // TODO Auto-generated constructor stub
 
 }
 
 AuthorizationModulePlugin::~AuthorizationModulePlugin() {
-	// TODO Auto-generated destructor stub
+    // TODO Auto-generated destructor stub
 }
 
 void AuthorizationModulePlugin::init(ApplicationServerInterface *app) {
-
-	app->registerCommand(new ListAuthGroupCommand(this));
-	app->registerAuthProvider(new AuthProvider(this));
-	app->registerWebInterface(new WebAuthorization(this));
+    ApplicationServerInterfaceProvider::SetApp(app);
+    app->registerCommand(new ListAuthGroupCommand(this));
+    app->registerAuthProvider(new AuthProvider(this));
+    app->registerWebInterface(new WebAuthorization(this));
 
 }
 void AuthorizationModulePlugin::install(ApplicationServerInterface *  /*app*/){
-	qx::dao::create_table<AuthGroup>();
-	qx::dao::create_table<AuthUser>();
-	qx::dao::create_table<AuthObject>();
+    qx::dao::create_table<AuthGroup>();
+    qx::dao::create_table<AuthUser>();
+    qx::dao::create_table<AuthObject>();
 }

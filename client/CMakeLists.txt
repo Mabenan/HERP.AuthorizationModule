@@ -33,17 +33,18 @@ target_precompile_headers(${target}
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
+find_package(Qt5Network REQUIRED)
 if(${PACKAGE})
 find_package(ApplicationClient)
 endif()
-qt5_use_modules(${target} Core Gui Widgets)
+qt5_use_modules(${target} Core Gui Widgets Network)
 
 target_include_directories(${target} PUBLIC
  PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${INCLUDE_FOLDER}>
 )
-target_link_libraries(${target} ApplicationClientInterface QxOrm)
+target_link_libraries(${target} ApplicationClientInterface QxOrm QxOrmHelperMacros)
 install(TARGETS ${target}
 LIBRARY DESTINATION "${LIB_FOLDER}"
     ARCHIVE DESTINATION "${LIB_FOLDER}"

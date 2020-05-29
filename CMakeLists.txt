@@ -41,7 +41,7 @@ target_include_directories(${target} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>
     $<INSTALL_INTERFACE:${INCLUDE_FOLDER}>
 )
-target_link_libraries(${target} ApplicationServerInterface QxOrm)
+target_link_libraries(${target} ApplicationServerInterface QxOrm QxOrmHelperMacros)
 install(TARGETS ${target}
 LIBRARY DESTINATION "${LIB_FOLDER}"
     ARCHIVE DESTINATION "${LIB_FOLDER}"

@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/herp/authorizationmodule">
         <file>userdashboard.qml</file>
+        <file>userlist.qml</file>
     </qresource>
 </RCC>

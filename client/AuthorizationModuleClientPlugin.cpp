@@ -14,7 +14,6 @@
 #include <dataService/AuthUserService.h>
 #include <QMessageBox>
 AuthorizationModuleClientPlugin::AuthorizationModuleClientPlugin(QObject *parent) : ApplicationClientPluginInterface(parent) {
-    // TODO Auto-generated constructor stub
 
 }
 
@@ -23,9 +22,15 @@ AuthorizationModuleClientPlugin::~AuthorizationModuleClientPlugin() {
 }
 
 void AuthorizationModuleClientPlugin::init(ApplicationClientInterface * app) {
-
-    app->addDashboardItem(new UserDashboardItem());
+this->dashboard = new UserDashboardItem(app, this);
+    app->addDashboardItem(this->dashboard);
 
 }
 void AuthorizationModuleClientPlugin::install(ApplicationClientInterface * app){
+}
+
+
+const QString AuthorizationModuleClientPlugin::getName()
+{
+    return QStringLiteral("HERP.AuthorizationModule");
 }

@@ -14,15 +14,16 @@
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUser{
 
 public:
-	QString name;
-	QString authGuid;
-	QString pass;
-	list_auth_group m_auth_groups;
+    QString name;
+    QString authGuid;
+    QString pass;
+    list_auth_group m_auth_groups;
 };
 QX_REGISTER_PRIMARY_KEY(AuthUser, QString);
 HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthUser, qx::trait::no_base_class_defined, 0);
 
 using auth_user_ptr = std::shared_ptr<AuthUser>;
-using list_auth_user = std::vector<auth_user_ptr>;
+using list_auth_user = qx::QxCollection<QString, auth_user_ptr>;
+typedef std::shared_ptr<list_auth_user> list_auth_user_ptr;
 typedef qx::QxCollection<long, auth_user_ptr> map_auth_user;
 #endif /* REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHUSER_H_ */
