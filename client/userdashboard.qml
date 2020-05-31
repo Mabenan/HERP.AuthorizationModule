@@ -3,6 +3,7 @@ import QtQuick.Controls 2.13
 import QtQuick.Layouts 1.3
 
 Item {
+    id: element2
 
     property variant myDashboard;
     function setDashboard(dashboard){
@@ -11,7 +12,8 @@ Item {
     }
 
     Rectangle{
-        width: childrenRect.width
+
+        width: window.width - 16
         height: childrenRect.height
         color:  "green";
 
@@ -19,8 +21,11 @@ Item {
             id: gridLayout
             height: 200
             rows: 3
-            width: dashboardView.width
             columns: 2
+            anchors.right: parent.right
+            anchors.rightMargin: 0
+            anchors.left: parent.left
+            anchors.leftMargin: 0
 
 
             Text {
@@ -81,6 +86,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:0;autoSize:true;height:480;width:640}D{i:2;anchors_height:100;anchors_width:100}
+    D{i:2;anchors_height:100;anchors_width:100}
 }
 ##^##*/

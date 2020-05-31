@@ -20,6 +20,7 @@ public:
     token = UserInformation::token;
 
 #endif
+
   }
   QString login;
   QString token;

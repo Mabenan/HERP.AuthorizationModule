@@ -18,7 +18,7 @@ QX_SERVICE_IX_PARAMETER_SERIALIZATION_CPP(AuthUserInput)
 QX_SERVICE_IX_PARAMETER_SERIALIZATION_CPP(AuthUserOutput)
 
 
-REGISTER_AUTH(auth_user_ptr,list_auth_user_ptr)
+REGISTER_AUTH(AuthUser,list_auth_user_ptr)
 REGISTER_OUTPUT_PARAMETER_BASE(auth_user_ptr, list_auth_user_ptr)
 REGISTER_AUTH_SERVICE_BASE(AuthUserInput, AuthUserOutput, AuthUser, list_auth_user)
 REGISTER_SERVICE_BASE(AuthUserService)

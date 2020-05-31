@@ -16,10 +16,14 @@ qx::IxModel *UserDashboardItem::userListModel()
 const QString UserDashboardItem::source()
 {
     if(UserInformation::user.isEmpty()
-            || UserInformation::token.isEmpty())
+        || UserInformation::token.isEmpty()){
     return QStringLiteral("/herp/authorizationmodule/userdashboard.qml");
-    else
+    }
+    else{
+
+        this->m_listModel->qxFetchAll_();
         return QStringLiteral("/herp/authorizationmodule/userlist.qml");
+    }
 }
 
 void UserDashboardItem::remove()
@@ -71,7 +75,19 @@ void UserDashboardItem::loginFinished(QNetworkReply *reply)
     qDebug() << jsonData.value("user").toString();
     qDebug() << jsonData.value("auth_guid").toString();
     UserInformation::token = jsonData.value("auth_guid").toString();
+
+    QDir tmp(QStandardPaths::locate(QStandardPaths::TempLocation, "", QStandardPaths::LocateDirectory));
+    QFile file(tmp.path() + QDir::separator() + "app.data");
+    file.open(QFile::OpenModeFlag::ReadWrite);
+    file.seek(0);
+    QJsonDocument doc;
+    QJsonObject userObject;
+    userObject.insert("user",UserInformation::user);
+    userObject.insert("token",UserInformation::token);
+    doc.setObject(userObject);
+    file.write(doc.toJson());
+    file.close();
+
     emit sourceChanged();
-    this->m_listModel->qxFetchAll_();
     }
 }
