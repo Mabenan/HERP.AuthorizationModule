@@ -1,10 +1,11 @@
 #include "userdashboarditem.h"
 #include <dataService/authparameter.h>
 #include <dataService/AuthUserService.h>
+#include <dataService/AuthServiceMethodService.h>
 UserDashboardItem::UserDashboardItem(ApplicationClientInterface * app, QObject * parent): DashboardItem(parent)
 {
     this->app = app;
-    this->m_listModel =  new qx::QxModelService<AuthUser, AuthUserService>();
+    this->m_listModel =  new qx::QxModelService<AuthServiceMethod, AuthServiceMethodService>();
 }
 
 qx::IxModel *UserDashboardItem::userListModel()
@@ -22,6 +23,7 @@ const QString UserDashboardItem::source()
     else{
 
         this->m_listModel->qxFetchAll_();
+        qDebug() << this->m_listModel->rowCount();
         return QStringLiteral("/herp/authorizationmodule/userlist.qml");
     }
 }

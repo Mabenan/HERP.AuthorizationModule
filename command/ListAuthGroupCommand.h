@@ -11,12 +11,12 @@
 #include <CommandInterface.h>
 
 class ListAuthGroupCommand: public CommandInterface {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	ListAuthGroupCommand(QObject * parent = nullptr);
-	~ListAuthGroupCommand() override;
-	void execute(ApplicationServerInterface *app) override;
-	QString getName() const override;
+    ListAuthGroupCommand(QObject * parent = nullptr);
+    ~ListAuthGroupCommand() override;
+    void execute(ApplicationServerInterface *app, QStringList args) override;
+    QString getName() const override;
 };
 
 #endif /* REPS_HERP_AUTHORIZATIONMODULE_COMMAND_LISTAUTHGROUPCOMMAND_H_ */

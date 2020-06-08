@@ -34,6 +34,12 @@ this->dashboard = new UserDashboardItem(app, this);
         file.close();
     }
 
+    qx::IxClass * thisClass =qx::QxClassX::getClass("AuthServiceMethod");
+    qx::IxDataMemberX * props = thisClass->getDataMemberX();
+    for(int i = 0; i < props->size(); i++){
+        qDebug() << props->get(i)->getName();
+    }
+
 }
 void AuthorizationModuleClientPlugin::install(ApplicationClientInterface * app){
 }

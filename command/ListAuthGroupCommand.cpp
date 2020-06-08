@@ -17,7 +17,7 @@ ListAuthGroupCommand::~ListAuthGroupCommand() {
   // TODO Auto-generated destructor stub
 }
 
-void ListAuthGroupCommand::execute(ApplicationServerInterface * /*app*/) {
+void ListAuthGroupCommand::execute(ApplicationServerInterface * /*app*/, QStringList /*args*/) {
   map_auth_group authGroups;
   qx::dao::fetch_all(authGroups);
   for (const map_auth_group::type_pair_key_value &authGroup : authGroups) {

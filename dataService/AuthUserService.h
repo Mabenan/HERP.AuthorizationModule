@@ -43,8 +43,7 @@ class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUserService
 
 public:
   AuthUserService()
-      : auth_user_service_base_class(QStringLiteral("AuthUserService"),
-                                     QStringLiteral("SEE_USER")) {
+      : auth_user_service_base_class(QStringLiteral("AuthUserService")) {
     ;
   }
   ~AuthUserService() override { ; }
