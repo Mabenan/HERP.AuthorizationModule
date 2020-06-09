@@ -15,6 +15,7 @@
 #include <QMessageBox>
 AuthorizationModuleClientPlugin::AuthorizationModuleClientPlugin(QObject *parent) : ApplicationClientPluginInterface(parent) {
 
+    Q_INIT_RESOURCE(herpAuthorizationModule);
 }
 
 AuthorizationModuleClientPlugin::~AuthorizationModuleClientPlugin() {

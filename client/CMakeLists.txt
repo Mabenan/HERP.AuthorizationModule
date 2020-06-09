@@ -12,6 +12,9 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/plugins/client)
+if(UNIX)
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/plugins/client)
+endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
@@ -25,11 +28,6 @@ file(GLOB HEADER
 add_subdirectory(../data ${CMAKE_BINARY_DIR}/../HERP.AuthorizationModule.Client.data)
 add_subdirectory(../dataService ${CMAKE_BINARY_DIR}/../HERP.AuthorizationModule.Client.dataService)
 
-add_library(${target} SHARED ${SRC} qml.qrc)
-target_precompile_headers(${target}
- PUBLIC
-  "../HERP.AuthorizationModule.Precompiled.h"
- )
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
@@ -37,6 +35,13 @@ find_package(Qt5Network REQUIRED)
 if(${PACKAGE})
 find_package(ApplicationClient)
 endif()
+find_package(Qt5QuickCompiler)
+qtquick_compiler_add_resources(${RSC} herpAuthorizationModule.qrc)
+add_library(${target} SHARED ${SRC} herpAuthorizationModule.qrc)
+target_precompile_headers(${target}
+ PUBLIC
+  "../HERP.AuthorizationModule.Precompiled.h"
+ )
 qt5_use_modules(${target} Core Gui Widgets Network)
 
 target_include_directories(${target} PUBLIC

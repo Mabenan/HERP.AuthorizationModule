@@ -49,4 +49,4 @@ AuthProvider::AuthProvider(QObject *parent) : AuthProviderInterface(parent) {}
 
 AuthProvider::~AuthProvider() = default;
 
-#include "moc_authprovider.cpp"
+#include "moc_AuthProvider.cpp"

@@ -5,6 +5,9 @@
 #include <QString>
 #include <QxOrm.h>
 #include <data/AuthObject.h>
+#ifdef _APP_CLIENT
+#include <QMetaObject>
+#endif
 
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthServiceMethod
 {
@@ -17,12 +20,14 @@ public:
     type_composite_key m_key;
     auth_object_ptr m_auth_object;
 
-    QString service_name(){
+#ifdef _APP_CLIENT
+    Q_INVOKABLE QString service_name(){
         return m_key.first;
     }
-    QString function_name(){
+    Q_INVOKABLE QString function_name(){
         return m_key.second;
     }
+#endif
 public:
     AuthServiceMethod();
     virtual ~AuthServiceMethod();

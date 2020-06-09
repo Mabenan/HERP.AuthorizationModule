@@ -4,6 +4,7 @@ import com.applicationclient 1.0 as AppClient
 Item {
     id: element
     width: window.width - 16
+    height: childrenRect.height
 
     property variant myDashboard;
     function setDashboard(dashboard){
@@ -13,40 +14,34 @@ Item {
 
     Rectangle{
         color:  "green";
-        anchors.right: parent.right
-        anchors.rightMargin: 0
-        anchors.left: parent.left
-        anchors.leftMargin: 0
         height: childrenRect.height
+        width: window.width - 16
+        visible: true
 
         ListView {
             id: userList
             model: myDashboard.userListModel
-            height: 300
-            y: 30
-            anchors.fill: parent
-            delegate: Rectangle {
+            height: childrenRect.height
+            delegate:
                 Row {
-                                 height: 20
                                  spacing: 10
 
                                  Text {
-                                     text: userList.currentIndex
+                                     text: index
                                      font.bold: true
                                      anchors.verticalCenter: parent.verticalCenter
                                  }
                                  Text {
-                                     text: AppClient.App.makeAccisable("service_name|function_name", userList.currentIndex, userList.model)[0]
+                                     text: AppClient.App.makeAccisable("service_name|function_name", index, userList.model)[0]
                                      font.bold: true
                                      anchors.verticalCenter: parent.verticalCenter
                                  }
                                  Text {
-                                     text: AppClient.App.makeAccisable("service_name|function_name", userList.currentIndex, userList.model)[1]
+                                     text: AppClient.App.makeAccisable("service_name|function_name", index, userList.model)[1]
                                      font.bold: true
                                      anchors.verticalCenter: parent.verticalCenter
                                  }
                              }
-                        }
         }
     }
 }
