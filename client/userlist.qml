@@ -41,6 +41,9 @@ Item {
                                      font.bold: true
                                      anchors.verticalCenter: parent.verticalCenter
                                  }
+                                 Text{
+                                     text: userList.model.auth_object(index, false).getModelValue(0, "auth_object_id")
+                                 }
                              }
         }
     }

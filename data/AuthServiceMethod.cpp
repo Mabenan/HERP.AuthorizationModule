@@ -12,6 +12,6 @@ template <> void register_class(QxClass<AuthServiceMethod> &t) {
 }
 } // namespace qx
 
-AuthServiceMethod::AuthServiceMethod() { }
+AuthServiceMethod::AuthServiceMethod(QObject * parent) : QObject(parent) { }
 
 AuthServiceMethod::~AuthServiceMethod() = default;

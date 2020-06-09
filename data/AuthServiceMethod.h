@@ -5,31 +5,27 @@
 #include <QString>
 #include <QxOrm.h>
 #include <data/AuthObject.h>
-#ifdef _APP_CLIENT
-#include <QMetaObject>
-#endif
 
-class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthServiceMethod
+class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthServiceMethod : public QObject
 {
 
     Q_PROPERTY(QString service_name READ service_name)
     Q_PROPERTY(QString function_name READ function_name)
+    Q_OBJECT
 public:
     typedef QPair<QString, QString> type_composite_key;
     static QString str_composite_key() { return "service_name|function_name"; }
     type_composite_key m_key;
     auth_object_ptr m_auth_object;
 
-#ifdef _APP_CLIENT
     Q_INVOKABLE QString service_name(){
         return m_key.first;
     }
     Q_INVOKABLE QString function_name(){
         return m_key.second;
     }
-#endif
 public:
-    AuthServiceMethod();
+    AuthServiceMethod(QObject * parent = nullptr);
     virtual ~AuthServiceMethod();
 
     static QVariant makeAccisable(QVariant input, QString column){
@@ -52,5 +48,6 @@ using auth_service_method_ptr = std::shared_ptr<AuthServiceMethod>;
 using list_auth_service_method = qx::QxCollection<AuthServiceMethod::type_composite_key, auth_service_method_ptr>;
 typedef std::shared_ptr<list_auth_service_method> list_auth_service_method_ptr;
 typedef qx::QxCollection<AuthServiceMethod::type_composite_key, auth_service_method_ptr> map_auth_service_method;
+
 
 #endif // AUTHSERVICEMETHOD_H
