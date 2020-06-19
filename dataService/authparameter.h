@@ -4,10 +4,25 @@
 #include <HERP.AuthorizationModule.Precompiled.h>
 
 #ifdef _APP_CLIENT
-class UserInformation {
+class HERP_AUTHORIZATION_MODULE_DLL_EXPORT UserInformation : public QObject
+{
+    Q_OBJECT
+private:
+    static UserInformation * _instance;
 public:
-  static QString user;
-  static QString token;
+    static UserInformation *instance() {
+      if (!_instance)
+        _instance = new UserInformation();
+      return _instance;
+    }
+  QString user;
+  QString token;
+  void  logout();
+  void login(QString user, QString token);
+Q_SIGNALS:
+  void logedout();
+  void logedin();
+
 };
 #endif
 template <typename O, typename L>
@@ -16,8 +31,8 @@ class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthParameter
 public:
   AuthParameter(): QxInputParameterBase<O, L> () {
 #ifdef _APP_CLIENT
-    login = UserInformation::user;
-    token = UserInformation::token;
+    login = UserInformation::instance()->user;
+    token = UserInformation::instance()->token;
 
 #endif
 

@@ -37,6 +37,7 @@ void AuthorizationModulePlugin::install(ApplicationServerInterface *  /*app*/){
     qx::dao::create_table<AuthUser>();
     qx::dao::create_table<AuthObject>();
     qx::dao::create_table<AuthServiceMethod>();
+    qx::dao::create_table<AuthUserToken>();
     AuthObject * seeUser = new AuthObject();
     seeUser->m_id = "SEE_USER";
     qx::dao::insert(seeUser);

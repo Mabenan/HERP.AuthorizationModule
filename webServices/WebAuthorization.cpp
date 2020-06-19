@@ -37,14 +37,15 @@ void WebAuthorization::execute(qx::QxHttpRequest &request,
     QJsonParseError parseError{};
     jsonRequest = QJsonDocument::fromJson(request.data(), &parseError).object();
     QString user = jsonRequest.value(QStringLiteral("user")).toString();
-    QString auth_guid = QString::fromUtf8(
-        request.headers().value(QStringLiteral("auth_guid").toLatin1()));
+    QString auth_guid =
+         jsonRequest.value(QStringLiteral("auth_guid").toLatin1()).toString();
     userObject->name = user;
     if (qx::dao::exist(userObject)) {
-      qx::dao::fetch_by_id(userObject);
-      if (userObject->authGuid == auth_guid) {
-        userObject->authGuid = QLatin1String();
-        qx::dao::save(userObject);
+      qx::dao::fetch_by_id_with_all_relation(userObject);
+      if (userObject->m_auth_user_tokens.contains(QPair<QString,QString>(user, auth_guid)) ) {
+        qx::dao::delete_by_id(userObject->m_auth_user_tokens.getByKey(QPair<QString,QString>(user, auth_guid)));
+        userObject->m_auth_user_tokens.removeByKey(QPair<QString,QString>(user, auth_guid));
+        qx::dao::save_with_all_relation(userObject);
         response.data() = QJsonDocument(jsonResult).toJson();
       } else {
         response.status() = 401;
@@ -64,11 +65,16 @@ void WebAuthorization::execute(qx::QxHttpRequest &request,
         QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Sha256)
             .toHex());
     userObject->name = user;
+    auth_user_token_ptr token = nullptr;
     if (qx::dao::exist(userObject)) {
       qx::dao::fetch_by_id(userObject);
       if (userObject->pass == passwordHash) {
-        userObject->authGuid = QUuid::createUuid().toString();
-        qx::dao::save(userObject);
+        token = auth_user_token_ptr(new AuthUserToken());
+        token->m_key = QPair<QString, QString>(user, QUuid::createUuid().toString());
+        userObject->m_auth_user_tokens.insert(token->m_key, token);
+        token->auth_user = auth_user_ptr(userObject);
+        qx::dao::save(token);
+        qx::dao::save_with_all_relation(userObject);
       } else {
         qDebug() << passwordHash;
         response.status() = 401;
@@ -76,7 +82,7 @@ void WebAuthorization::execute(qx::QxHttpRequest &request,
     } else {
       response.status() = 401;
     }
-    jsonResult.insert(QLatin1String("auth_guid"), userObject->authGuid);
+    jsonResult.insert(QLatin1String("auth_guid"), token->authGuid());
     response.data() = QJsonDocument(jsonResult).toJson();
   } else {
     response.status() = 401;

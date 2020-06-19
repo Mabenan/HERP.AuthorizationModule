@@ -11,6 +11,7 @@
 #include <ApplicationClientPluginInterface.h>
 #include <HERP.AuthorizationModule.Precompiled.h>
 #include <userdashboarditem.h>
+#include "LogoutButton.h"
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthorizationModuleClientPlugin: public ApplicationClientPluginInterface {
 
     Q_OBJECT
@@ -18,6 +19,8 @@ class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthorizationModuleClientPlugin: publ
     Q_INTERFACES(ApplicationClientPluginInterface)
 private:
     UserDashboardItem * dashboard;
+    LogoutButton * logoutButton;
+    ApplicationClientInterface * app;
 public:
     AuthorizationModuleClientPlugin(QObject *parent = nullptr);
     ~AuthorizationModuleClientPlugin() override;
@@ -27,6 +30,8 @@ public:
     // ApplicationClientPluginInterface interface
 public:
     const QString getName() override;
+    void onlogin();
+    void onlogout();
 };
 
 #endif /* REPS_HERP_AUTHORIZATIONMODULE_AUTHORIZATIONMODULEPLUGIN_H_ */

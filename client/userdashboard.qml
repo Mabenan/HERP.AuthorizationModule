@@ -20,7 +20,7 @@ Item {
         GridLayout {
             id: gridLayout
             height: 200
-            rows: 3
+            rows: 4
             columns: 2
             anchors.right: parent.right
             anchors.rightMargin: 0
@@ -63,6 +63,12 @@ Item {
                 echoMode: TextInput.Password
             }
 
+            Switch {
+                id: saveLogin
+                text: qsTr("Switch")
+                Layout.columnSpan: 2
+            }
+
             Button {
                 id: button
                 text: qsTr("Login")
@@ -73,10 +79,11 @@ Item {
                 Connections {
                     target: button
                     onClicked: {
-                        myDashboard.login(username.text, password.text);
+                        myDashboard.login(username.text, password.text, saveLogin.checked);
                     }
                 }
             }
+
 
 
         }
@@ -86,6 +93,6 @@ Item {
 
 /*##^##
 Designer {
-    D{i:2;anchors_height:100;anchors_width:100}
+    D{i:0;autoSize:true;height:480;width:640}D{i:2;anchors_height:100;anchors_width:100}
 }
 ##^##*/

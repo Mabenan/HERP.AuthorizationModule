@@ -11,13 +11,14 @@
 #include <QString>
 #include <data/AuthGroup.h>
 #include <HERP.AuthorizationModule.Precompiled.h>
+#include <data/AuthUserToken.h>
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUser{
 
 public:
     QString name;
-    QString authGuid;
     QString pass;
     list_auth_group m_auth_groups;
+    list_auth_user_token m_auth_user_tokens;
 };
 QX_REGISTER_PRIMARY_KEY(AuthUser, QString, name);
 HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthUser, qx::trait::no_base_class_defined, 0);

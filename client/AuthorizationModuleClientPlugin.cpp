@@ -16,6 +16,7 @@
 AuthorizationModuleClientPlugin::AuthorizationModuleClientPlugin(QObject *parent) : ApplicationClientPluginInterface(parent) {
 
     Q_INIT_RESOURCE(herpAuthorizationModule);
+    this->logoutButton = new LogoutButton();
 }
 
 AuthorizationModuleClientPlugin::~AuthorizationModuleClientPlugin() {
@@ -23,6 +24,9 @@ AuthorizationModuleClientPlugin::~AuthorizationModuleClientPlugin() {
 }
 
 void AuthorizationModuleClientPlugin::init(ApplicationClientInterface * app) {
+    this->app = app;
+    QObject::connect(UserInformation::instance(), &UserInformation::logedin, this, &AuthorizationModuleClientPlugin::onlogin);
+    QObject::connect(UserInformation::instance(), &UserInformation::logedout, this, &AuthorizationModuleClientPlugin::onlogout);
 this->dashboard = new UserDashboardItem(app, this);
     app->addDashboardItem(this->dashboard);
     QDir tmp(QStandardPaths::locate(QStandardPaths::TempLocation, "", QStandardPaths::LocateDirectory));
@@ -30,8 +34,9 @@ this->dashboard = new UserDashboardItem(app, this);
         QFile file(tmp.path() + QDir::separator() + "app.data");
         file.open(QFile::ReadOnly);
         QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
-        UserInformation::user = doc.object().value("user").toString();
-        UserInformation::token = doc.object().value("token").toString();
+        QString user = doc.object().value("user").toString();
+        QString token = doc.object().value("token").toString();
+        UserInformation::instance()->login(user, token);
         file.close();
     }
 
@@ -49,4 +54,20 @@ void AuthorizationModuleClientPlugin::install(ApplicationClientInterface * app){
 const QString AuthorizationModuleClientPlugin::getName()
 {
     return QStringLiteral("HERP.AuthorizationModule");
+}
+
+void AuthorizationModuleClientPlugin::onlogin()
+{
+    this->app->addSideMenuButton(this->logoutButton);
+}
+
+void AuthorizationModuleClientPlugin::onlogout()
+{
+    QDir tmp(QStandardPaths::locate(QStandardPaths::TempLocation, "", QStandardPaths::LocateDirectory));
+    if(QFile::exists(tmp.path() + QDir::separator() + "app.data")){
+        QFile file(tmp.path() + QDir::separator() + "app.data");
+        file.remove();
+    }
+    this->app->removeSideMenuButton(this->logoutButton);
+
 }

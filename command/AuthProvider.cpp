@@ -20,19 +20,25 @@ int AuthProvider::isUserAuthorized(const QString &user,
   authUser->name = user;
   if (qx::dao::exist(authUser)) {
     qx::dao::fetch_by_id_with_all_relation(authUser);
-    if (params.contains(QStringLiteral("auth_guid")) &&
-        params[QStringLiteral("auth_guid")] == authUser->authGuid) {
+    if (params.contains(QStringLiteral("auth_guid"))) {
 
-      if (authObject == QLatin1String("ALL_USER")) {
-        return 0;
-      }
-      for (auth_group_ptr authGroup : authUser->m_auth_groups) {
-        qx::dao::fetch_by_id_with_all_relation(authGroup);
-        for (const auth_object_ptr &authObjectData :
-             authGroup->m_auths_granted) {
-          if (authObjectData->m_id == authObject)
-            return 0;
+      QString auth_guid = params[QStringLiteral("auth_guid")].toString();
+      if (authUser->m_auth_user_tokens.contains(
+              QPair<QString, QString>(user, auth_guid))) {
+
+        if (authObject == QLatin1String("ALL_USER")) {
+          return 0;
         }
+        for (auth_group_ptr authGroup : authUser->m_auth_groups) {
+          qx::dao::fetch_by_id_with_all_relation(authGroup);
+          for (const auth_object_ptr &authObjectData :
+               authGroup->m_auths_granted) {
+            if (authObjectData->m_id == authObject)
+              return 0;
+          }
+        }
+      } else {
+        return -1;
       }
 
     } else {
