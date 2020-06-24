@@ -68,6 +68,9 @@ void UserDashboardItem::loginFinished(QNetworkReply *reply) {
   if (reply->error()) {
     qDebug() << reply->error();
     qDebug() << reply->errorString();
+    if(reply->error() == QNetworkReply::NetworkError::AuthenticationRequiredError){
+        this->app->warning(QStringLiteral("Login failed"), QStringLiteral("check username / password"));
+    }
   } else {
     QByteArray buffer = reply->readAll();
     qDebug() << QString::fromUtf8(buffer);
