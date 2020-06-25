@@ -12,7 +12,8 @@
 #include <QxOrm.h>
 class AuthGroup;
 
-class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthObject {
+class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthObject : public qx::IxPersistable{
+    QX_PERSISTABLE_HPP(AuthObject)
 public:
     using auth_group_ptr = std::shared_ptr<AuthGroup>;
     using list_auth_group = std::vector<auth_group_ptr>;

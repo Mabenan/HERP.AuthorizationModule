@@ -3,6 +3,7 @@
 #include "AuthUser.h"
 
 HERP_REGISTER_CPP_HERP_AUTHORIZATION_MODULE(AuthUserToken)
+QX_PERSISTABLE_CPP(AuthUserToken)
 
 namespace qx {
 template <> void register_class(QxClass<AuthUserToken> &t) {
@@ -13,6 +14,6 @@ template <> void register_class(QxClass<AuthUserToken> &t) {
 }
 } // namespace qx
 
-AuthUserToken::AuthUserToken(QObject * parent) : QObject(parent) { }
+AuthUserToken::AuthUserToken(QObject * parent) { }
 
 AuthUserToken::~AuthUserToken() = default;

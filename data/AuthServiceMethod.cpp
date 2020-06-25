@@ -2,6 +2,7 @@
 #include <QxOrm_Impl.h>
 
 HERP_REGISTER_CPP_HERP_AUTHORIZATION_MODULE(AuthServiceMethod)
+QX_PERSISTABLE_CPP(AuthServiceMethod)
 
 namespace qx {
 template <> void register_class(QxClass<AuthServiceMethod> &t) {
@@ -12,6 +13,6 @@ template <> void register_class(QxClass<AuthServiceMethod> &t) {
 }
 } // namespace qx
 
-AuthServiceMethod::AuthServiceMethod(QObject * parent) : QObject(parent) { }
+AuthServiceMethod::AuthServiceMethod(QObject * parent) { }
 
 AuthServiceMethod::~AuthServiceMethod() = default;

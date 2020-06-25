@@ -6,11 +6,11 @@
 #include <data/AuthGroup.h>
 #include <HERP.AuthorizationModule.Precompiled.h>
 class AuthUser;
-class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUserToken : public QObject{
+class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUserToken : public qx::IxPersistable{
 
     Q_PROPERTY(QString username READ username)
     Q_PROPERTY(QString authGuid READ authGuid)
-    Q_OBJECT
+    QX_PERSISTABLE_HPP(AuthUserToken)
 public:
     using auth_user_ptr = std::shared_ptr<AuthUser>;
     typedef QPair<QString, QString> type_composite_key;

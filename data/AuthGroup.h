@@ -13,7 +13,8 @@
 #include <HERP.AuthorizationModule.Precompiled.h>
 class AuthUser;
 
-class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthGroup  {
+class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthGroup : public qx::IxPersistable {
+    QX_PERSISTABLE_HPP(AuthGroup)
 public:
     using list_auth_user = std::vector<std::shared_ptr<AuthUser> >;
     QString m_name;

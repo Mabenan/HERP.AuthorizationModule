@@ -12,8 +12,9 @@
 #include <data/AuthGroup.h>
 #include <HERP.AuthorizationModule.Precompiled.h>
 #include <data/AuthUserToken.h>
-class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUser{
+class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUser : public qx::IxPersistable{
 
+    QX_PERSISTABLE_HPP(AuthUser)
 public:
     QString name;
     QString pass;

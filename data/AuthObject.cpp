@@ -9,6 +9,7 @@
 #include <data/AuthGroup.h>
 #include <data/AuthObject.h>
 HERP_REGISTER_CPP_HERP_AUTHORIZATION_MODULE(AuthObject)
+QX_PERSISTABLE_CPP(AuthObject)
 
 namespace qx {
 template <> void register_class(QxClass<AuthObject> &t) {

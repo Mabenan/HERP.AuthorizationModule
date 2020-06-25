@@ -6,12 +6,12 @@
 #include <QxOrm.h>
 #include <data/AuthObject.h>
 
-class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthServiceMethod : public QObject
+class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthServiceMethod : public qx::IxPersistable
 {
 
     Q_PROPERTY(QString service_name READ service_name)
     Q_PROPERTY(QString function_name READ function_name)
-    Q_OBJECT
+    QX_PERSISTABLE_HPP(AuthServiceMethod)
 public:
     typedef QPair<QString, QString> type_composite_key;
     static QString str_composite_key() { return "service_name|function_name"; }
