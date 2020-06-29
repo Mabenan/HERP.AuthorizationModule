@@ -2,7 +2,8 @@
 #define AUTHSERVICEMETHODMODELSERVICE_H
 
 #include <dataService/AuthServiceMethodService.h>
-typedef qx::QxModelService<AuthServiceMethod, AuthServiceMethodService> auth_service_method_model_base_class;
+#include <qxmodelbase.h>
+typedef QxModelServiceBase<AuthServiceMethod, AuthServiceMethodService, AuthServiceMethod::type_composite_key> auth_service_method_model_base_class;
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthServiceMethodModel : public auth_service_method_model_base_class
 {
     Q_OBJECT

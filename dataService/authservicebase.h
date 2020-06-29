@@ -43,7 +43,7 @@ public:
     for(qx::IxFunctionX::type_pair_key_value function : *functions){
         AuthServiceMethod *serviceMethodObject = new AuthServiceMethod();
        serviceMethodObject->m_key.first = sServiceName;
-        serviceMethodObject->m_key.second = function.first;
+       serviceMethodObject->m_key.second =  function.first;
         if(!qx::dao::exist(serviceMethodObject)){
             qx::dao::insert(serviceMethodObject);
         }
@@ -64,8 +64,8 @@ public:
     QString serviceName = this->getServiceName();
     QString serviceMethod = this->getServiceMethodName();
     AuthServiceMethod *serviceMethodObject = new AuthServiceMethod();
-    serviceMethodObject->m_key.first  = serviceName;
-    serviceMethodObject->m_key.second = serviceMethod;
+    serviceMethodObject->m_key.first = serviceName;
+    serviceMethodObject->m_key.second =  serviceMethod;
     qx::dao::fetch_by_id_with_all_relation(serviceMethodObject);
     if (serviceMethodObject->m_auth_object) {
       params.insert(QStringLiteral("auth_guid"), QVariant(pParams->token));
