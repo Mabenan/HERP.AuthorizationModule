@@ -6,14 +6,13 @@ UserDashboardItem::UserDashboardItem(ApplicationClientInterface *app,
                                      QObject *parent)
     : DashboardItem(parent) {
   this->app = app;
-  this->m_listModel = new AuthServiceMethodModel();
   QObject::connect(UserInformation::instance(), &UserInformation::logedin, this,
                    &UserDashboardItem::onloginStatusChanged);
   QObject::connect(UserInformation::instance(), &UserInformation::logedout,
                    this, &UserDashboardItem::onloginStatusChanged);
+
 }
 
-qx::IxModel *UserDashboardItem::userListModel() { return this->m_listModel; }
 
 void UserDashboardItem::onloginStatusChanged() { emit sourceChanged(); }
 
@@ -21,13 +20,8 @@ const QString UserDashboardItem::source() {
   if (UserInformation::instance()->user.isEmpty() ||
       UserInformation::instance()->token.isEmpty()) {
     return QStringLiteral("/herp/authorizationmodule/userdashboard.qml");
-  } else {
-
-    this->m_listModel->qxFetchAll_(QStringList({"auth_object_id"}));
-    qDebug() << this->m_listModel->getLastError().text();
-    qDebug() << this->m_listModel->rowCount();
-    return QStringLiteral("/herp/authorizationmodule/userlist.qml");
   }
+  return QLatin1String("");
 }
 
 void UserDashboardItem::remove() { this->app->removeDashboardItem(this); }

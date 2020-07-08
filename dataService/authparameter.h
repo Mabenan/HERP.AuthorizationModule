@@ -29,6 +29,7 @@ template <typename O, typename L>
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthParameter
     : public QxInputParameterBase<O, L> {
 public:
+    typedef QxInputParameterBase<O, L> baseClass;
   AuthParameter(): QxInputParameterBase<O, L> () {
 #ifdef _APP_CLIENT
     login = UserInformation::instance()->user;

@@ -17,24 +17,25 @@
 #include <QxServices.h>
 #include <data/AuthUser.h>
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUserInput
-    : public AuthParameter<AuthUser, list_auth_user_ptr> {
+    : public AuthParameter<AuthUser, map_auth_user_ptr> {
   QX_SERVICE_IX_PARAMETER_SERIALIZATION_HPP(AuthUserInput);
 };
-using AuthUserInputBase = AuthParameter<AuthUser, list_auth_user_ptr>;
+using AuthUserInputBase = AuthParameter<AuthUser, map_auth_user_ptr>;
+QX_REGISTER_BASE_CLASS(AuthUserInputBase, AuthUserInputBase::baseClass)
 HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthUserInput, AuthUserInputBase, 0)
 using auth_user_service_input_ptr = std::shared_ptr<AuthUserInput>;
 
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUserOutput
-    : public QxOutputParamaterBase<auth_user_ptr, list_auth_user_ptr> {
+    : public QxOutputParamaterBase<auth_user_ptr, map_auth_user_ptr> {
   QX_SERVICE_IX_PARAMETER_SERIALIZATION_HPP(AuthUserOutput);
 };
 using AuthUserOutputBase =
-    QxOutputParamaterBase<auth_user_ptr, list_auth_user_ptr>;
+    QxOutputParamaterBase<auth_user_ptr, map_auth_user_ptr>;
 HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthUserOutput, AuthUserOutputBase,
                                             0)
 using auth_user_service_output_ptr = std::shared_ptr<AuthUserOutput>;
 
-typedef AuthServiceBase<AuthUserInput, AuthUserOutput, AuthUser, list_auth_user>
+typedef AuthServiceBase<AuthUserInput, AuthUserOutput, AuthUser, map_auth_user>
     auth_user_service_base_class;
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUserService
     : public auth_user_service_base_class {
@@ -47,6 +48,11 @@ public:
     ;
   }
   ~AuthUserService() override { ; }
+  void onBeforeProcess() override;
+  void onAfterProcess() override;
+#ifndef _APP_CLIENT
+  void save_() override;
+#endif
 };
 
 HERP_REGISTER_HPP_HERP_AUTHORIZATION_MODULE(AuthUserService,

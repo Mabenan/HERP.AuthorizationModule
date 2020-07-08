@@ -31,3 +31,34 @@ template <> void register_class(QxClass<AuthUserOutput> &t) {
 }
 
 } // namespace qx
+
+void AuthUserService::onBeforeProcess()
+{
+    auth_user_service_base_class::onBeforeProcess();
+    auth_user_service_input_ptr input = getInputParameter();
+    input->columns.append("auth_user_name");
+    if(input->columns.contains("pass")){
+    input->columns.removeAll("pass");
+    }
+}
+
+void AuthUserService::onAfterProcess()
+{
+    auth_user_service_output_ptr output = getOutputParameter();
+
+    if(output->instance){
+        output->instance->pass = "";
+    }else if(output->list){
+        for(int i = 0; i < output->list->count(); i++){
+            output->list->getByIndex(i)->pass = "";
+        }
+    }
+}
+#ifndef _APP_CLIENT
+void AuthUserService::save_()
+{
+    OUTPUT_ptr output = OUTPUT_ptr(new AuthUserOutput());
+    this->setOutputParameter(output);
+    this->setMessageReturn(400, "not allowed for user");
+}
+#endif

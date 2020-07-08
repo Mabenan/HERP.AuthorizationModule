@@ -28,4 +28,5 @@ using auth_user_ptr = std::shared_ptr<AuthUser>;
 using list_auth_user = qx::QxCollection<QString, auth_user_ptr>;
 typedef std::shared_ptr<list_auth_user> list_auth_user_ptr;
 typedef qx::QxCollection<QString, auth_user_ptr> map_auth_user;
+typedef std::shared_ptr<map_auth_user> map_auth_user_ptr;
 #endif /* REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHUSER_H_ */

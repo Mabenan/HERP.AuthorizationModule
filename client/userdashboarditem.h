@@ -9,13 +9,11 @@
 class UserDashboardItem : public DashboardItem
 {
     Q_OBJECT
-    Q_PROPERTY(qx::IxModel * userListModel READ userListModel)
 private:
     QString username;
     bool saveLogin;
     ApplicationClientInterface * app;
     QNetworkAccessManager *manager;
-    qx::IxModel * m_listModel;
 public:
     UserDashboardItem(ApplicationClientInterface * app, QObject * parent = nullptr);
     qx::IxModel * userListModel();

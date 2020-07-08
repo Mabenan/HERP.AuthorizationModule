@@ -12,6 +12,7 @@
 #include <HERP.AuthorizationModule.Precompiled.h>
 #include <userdashboarditem.h>
 #include "LogoutButton.h"
+#include "changeuserbutton.h"
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthorizationModuleClientPlugin: public ApplicationClientPluginInterface {
 
     Q_OBJECT
@@ -21,6 +22,7 @@ private:
     UserDashboardItem * dashboard;
     LogoutButton * logoutButton;
     ApplicationClientInterface * app;
+    ChangeUserButton * changeUserButton;
 public:
     AuthorizationModuleClientPlugin(QObject *parent = nullptr);
     ~AuthorizationModuleClientPlugin() override;

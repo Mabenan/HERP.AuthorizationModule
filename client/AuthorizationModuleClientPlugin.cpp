@@ -28,6 +28,7 @@ void AuthorizationModuleClientPlugin::init(ApplicationClientInterface * app) {
     QObject::connect(UserInformation::instance(), &UserInformation::logedin, this, &AuthorizationModuleClientPlugin::onlogin);
     QObject::connect(UserInformation::instance(), &UserInformation::logedout, this, &AuthorizationModuleClientPlugin::onlogout);
 this->dashboard = new UserDashboardItem(app, this);
+    this->changeUserButton = new ChangeUserButton(app);
     app->addDashboardItem(this->dashboard);
     QDir tmp(QStandardPaths::locate(QStandardPaths::TempLocation, "", QStandardPaths::LocateDirectory));
     if(QFile::exists(tmp.path() + QDir::separator() + "app.data")){
@@ -59,6 +60,8 @@ const QString AuthorizationModuleClientPlugin::getName()
 void AuthorizationModuleClientPlugin::onlogin()
 {
     this->app->addSideMenuButton(this->logoutButton);
+    this->app->addSideMenuButton(this->changeUserButton);
+    this->app->removeDashboardItem(this->dashboard);
 }
 
 void AuthorizationModuleClientPlugin::onlogout()
@@ -69,5 +72,6 @@ void AuthorizationModuleClientPlugin::onlogout()
         file.remove();
     }
     this->app->removeSideMenuButton(this->logoutButton);
+    app->addDashboardItem(this->dashboard);
 
 }

@@ -48,6 +48,7 @@ using auth_service_method_ptr = std::shared_ptr<AuthServiceMethod>;
 using list_auth_service_method = qx::QxCollection<AuthServiceMethod::type_composite_key, auth_service_method_ptr>;
 typedef std::shared_ptr<list_auth_service_method> list_auth_service_method_ptr;
 typedef qx::QxCollection<AuthServiceMethod::type_composite_key, auth_service_method_ptr> map_auth_service_method;
+typedef std::shared_ptr<map_auth_service_method> map_auth_service_method_ptr;
 
 
 #endif // AUTHSERVICEMETHOD_H
