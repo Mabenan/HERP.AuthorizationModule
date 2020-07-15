@@ -38,10 +38,12 @@ endif()
 find_package(Qt5QuickCompiler)
 qtquick_compiler_add_resources(${RSC} herpAuthorizationModule.qrc)
 add_library(${target} SHARED ${SRC} herpAuthorizationModule.qrc)
+if(COMMAND target_precompile_headers)
 target_precompile_headers(${target}
  PUBLIC
   "../HERP.AuthorizationModule.Precompiled.h"
  )
+ endif()
 qt5_use_modules(${target} Core Gui Widgets Network)
 
 target_include_directories(${target} PUBLIC

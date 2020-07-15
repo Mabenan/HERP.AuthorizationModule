@@ -3,6 +3,7 @@ if(NOT CMAKE_PROJECT_NAME)
 project(${target} LANGUAGES CXX)
 endif()
 include(../QxOrm/QxOrm.cmake)
+if(${_HRP_BUILD_SERVER})
 set(target "HERP.AuthorizationModule.Server")
 add_definitions(-D_BUILDING_HERP_AUTHORIZATION_MODULE)
 add_definitions(-D_QX_ENABLE_QT_NETWORK)
@@ -28,11 +29,12 @@ add_subdirectory(dataService)
 add_subdirectory(command)
 add_subdirectory(webServices)
 add_library(${target} SHARED ${SRC})
-
+if(COMMAND target_precompile_headers)
 target_precompile_headers(${target}
  PUBLIC
   "HERP.AuthorizationModule.Precompiled.h"
  )
+ endif()
 find_package(Qt5Core REQUIRED)
 if(${PACKAGE})
 find_package(ApplicationServer)
@@ -51,4 +53,6 @@ LIBRARY DESTINATION "${LIB_FOLDER}"
     RUNTIME DESTINATION "${PLUGIN_FOLDER}/server"
     INCLUDES DESTINATION "${INCLUDE_FOLDER}")
 install(FILES ${HEADER} DESTINATION ${INCLUDE_FOLDER})
+else()
 add_subdirectory(client)
+endif()
