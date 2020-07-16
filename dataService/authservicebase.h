@@ -2,12 +2,12 @@
 #define AUTHSERVICEBASE_H
 
 #include "authparameter.h"
-#include <HERP.AuthorizationModule.Precompiled.h>
+
 
 #ifndef _APP_CLIENT
 #include <ApplicationServerInterface.h>
 
-#include <data/AuthServiceMethod.h>
+#include <AuthServiceMethod.h>
 
 #include <QxRegister/QxClass.h>
 #endif

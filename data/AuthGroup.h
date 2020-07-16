@@ -9,8 +9,8 @@
 #define REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHGROUP_H_
 
 #include <QString>
-#include <data/AuthObject.h>
-#include <HERP.AuthorizationModule.Precompiled.h>
+#include <AuthObject.h>
+
 class AuthUser;
 
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthGroup : public qx::IxPersistable {

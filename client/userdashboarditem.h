@@ -4,7 +4,7 @@
 #include <DashboardItem.h>
 #include <QObject>
 #include <ApplicationClientInterface.h>
-#include <HERP.AuthorizationModule.Precompiled.h>
+#include <HERP.AuthorizationModule.Client.Precompiled.h>
 #include <QtNetwork>
 class UserDashboardItem : public DashboardItem
 {

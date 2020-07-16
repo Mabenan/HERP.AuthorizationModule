@@ -1,10 +1,10 @@
 #ifndef AUTHSERVICEMETHODSERVICE_H
 #define AUTHSERVICEMETHODSERVICE_H
 
-#include <HERP.AuthorizationModule.Precompiled.h>
-#include <data/AuthServiceMethod.h>
-#include <dataService/authparameter.h>
-#include <dataService/authservicebase.h>
+
+#include <AuthServiceMethod.h>
+#include <authparameter.h>
+#include <authservicebase.h>
 
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthServiceMethodInput
     : public AuthParameter<AuthServiceMethod, list_auth_service_method_ptr> {

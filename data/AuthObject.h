@@ -7,7 +7,7 @@
 
 #ifndef REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHOBJECT_H_
 #define REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHOBJECT_H_
-#include <HERP.AuthorizationModule.Precompiled.h>
+
 #include <QString>
 #include <QxOrm.h>
 class AuthGroup;

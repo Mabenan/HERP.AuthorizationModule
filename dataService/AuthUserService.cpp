@@ -6,7 +6,7 @@
  */
 
 #include <QxOrm_Impl.h>
-#include <dataService/AuthUserService.h>
+#include <AuthUserService.h>
 
 #include <memory>
 

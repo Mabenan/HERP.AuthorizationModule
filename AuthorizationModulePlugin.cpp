@@ -7,14 +7,14 @@
 
 #include <AuthorizationModulePlugin.h>
 #include <command/ListAuthGroupCommand.h>
-#include <data/AuthGroup.h>
-#include <data/AuthObject.h>
-#include <data/AuthServiceMethod.h>
-#include <data/AuthUser.h>
+#include <AuthGroup.h>
+#include <AuthObject.h>
+#include <AuthServiceMethod.h>
+#include <AuthUser.h>
 #include <command/AuthProvider.h>
 #include <command/addusercommand.h>
 #include <webServices/WebAuthorization.h>
-#include <dataService/authservicebase.h>
+#include <authservicebase.h>
 AuthorizationModulePlugin::AuthorizationModulePlugin(QObject *parent) : ApplicationServerPluginInterface(parent) {
     // TODO Auto-generated constructor stub
 

@@ -10,12 +10,12 @@
 
 #include "authparameter.h"
 #include "authservicebase.h"
-#include <HERP.AuthorizationModule.Precompiled.h>
+
 #include <QString>
 #include <QxService/IxParameter.h>
 #include <QxService/QxService.h>
 #include <QxServices.h>
-#include <data/AuthUser.h>
+#include <AuthUser.h>
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUserInput
     : public AuthParameter<AuthUser, map_auth_user_ptr> {
   QX_SERVICE_IX_PARAMETER_SERIALIZATION_HPP(AuthUserInput);

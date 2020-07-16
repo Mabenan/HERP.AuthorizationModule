@@ -8,10 +8,10 @@
  */
 
 #include <AuthorizationModuleClientPlugin.h>
-#include <data/AuthGroup.h>
-#include <data/AuthObject.h>
-#include <data/AuthUser.h>
-#include <dataService/AuthUserService.h>
+#include <AuthGroup.h>
+#include <AuthObject.h>
+#include <AuthUser.h>
+#include <AuthUserService.h>
 #include <QMessageBox>
 AuthorizationModuleClientPlugin::AuthorizationModuleClientPlugin(QObject *parent) : ApplicationClientPluginInterface(parent) {
 

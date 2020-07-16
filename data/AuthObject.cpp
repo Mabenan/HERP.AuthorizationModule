@@ -6,8 +6,8 @@
  */
 
 #include <QxOrm_Impl.h>
-#include <data/AuthGroup.h>
-#include <data/AuthObject.h>
+#include <AuthGroup.h>
+#include <AuthObject.h>
 HERP_REGISTER_CPP_HERP_AUTHORIZATION_MODULE(AuthObject)
 QX_PERSISTABLE_CPP(AuthObject)
 

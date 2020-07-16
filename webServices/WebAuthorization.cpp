@@ -8,7 +8,7 @@
 #include <QJsonParseError>
 #include <QUuid>
 #include <QxHttpServer/QxHttpServer.h>
-#include <data/AuthUser.h>
+#include <AuthUser.h>
 #include <webServices/WebAuthorization.h>
 
 WebAuthorization::WebAuthorization(QObject *parent) : WebInterface(parent) {

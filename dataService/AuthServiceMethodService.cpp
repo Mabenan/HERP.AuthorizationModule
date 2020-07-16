@@ -1,5 +1,5 @@
 #include <QxOrm_Impl.h>
-#include <dataService/AuthServiceMethodService.h>
+#include <AuthServiceMethodService.h>
 
 #include <memory>
 

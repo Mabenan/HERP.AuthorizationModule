@@ -16,7 +16,7 @@ if(UNIX)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/plugins/client)
 endif()
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/../data ${CMAKE_CURRENT_SOURCE_DIR}/../dataService)
 
 file(GLOB SRC
     "*.cpp"
@@ -37,12 +37,12 @@ find_package(ApplicationClient)
 endif()
 find_package(Qt5QuickCompiler)
 qtquick_compiler_add_resources(${RSC} herpAuthorizationModule.qrc)
-add_library(${target} SHARED ${SRC} herpAuthorizationModule.qrc)
+add_library(${target} SHARED ${SRC} ${HEADER} herpAuthorizationModule.qrc)
 if(COMMAND target_precompile_headers)
 target_precompile_headers(${target}
  PUBLIC
-  "../export.h"
-  "../HERP.AuthorizationModule.Precompiled.h"
+  "exportClient.h"
+  "HERP.AuthorizationModule.Client.Precompiled.h"
  )
  endif()
 qt5_use_modules(${target} Core Gui Widgets Network)

@@ -7,7 +7,7 @@
 
 #include <QxOrm.h>
 #include <command/ListAuthGroupCommand.h>
-#include <data/AuthGroup.h>
+#include <AuthGroup.h>
 ListAuthGroupCommand::ListAuthGroupCommand(QObject *parent)
     : CommandInterface(parent) {
   // TODO Auto-generated constructor stub

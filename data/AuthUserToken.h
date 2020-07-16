@@ -3,8 +3,8 @@
 
 
 #include <QString>
-#include <data/AuthGroup.h>
-#include <HERP.AuthorizationModule.Precompiled.h>
+#include <AuthGroup.h>
+
 class AuthUser;
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUserToken : public qx::IxPersistable{
 

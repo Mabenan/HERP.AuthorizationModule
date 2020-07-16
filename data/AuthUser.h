@@ -9,9 +9,9 @@
 #define REPS_HERP_AUTHORIZATIONMODULE_DATA_AUTHUSER_H_
 
 #include <QString>
-#include <data/AuthGroup.h>
-#include <HERP.AuthorizationModule.Precompiled.h>
-#include <data/AuthUserToken.h>
+#include <AuthGroup.h>
+
+#include <AuthUserToken.h>
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthUser : public qx::IxPersistable{
 
     QX_PERSISTABLE_HPP(AuthUser)

@@ -9,7 +9,7 @@
 #define REPS_HERP_AUTHORIZATIONMODULE_AUTHORIZATIONMODULEPLUGIN_H_
 
 #include <ApplicationClientPluginInterface.h>
-#include <HERP.AuthorizationModule.Precompiled.h>
+#include <HERP.AuthorizationModule.Client.Precompiled.h>
 #include <userdashboarditem.h>
 #include "LogoutButton.h"
 #include "changeuserbutton.h"

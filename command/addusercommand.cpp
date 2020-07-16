@@ -1,6 +1,6 @@
 #include "addusercommand.h"
 
-#include <data/AuthUser.h>
+#include <AuthUser.h>
 
 AddUserCommand::AddUserCommand(QObject *parent) : CommandInterface(parent)
 {

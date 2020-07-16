@@ -3,7 +3,7 @@
 
 #include "Button.h"
 
-#include <dataService/authparameter.h>
+#include <authparameter.h>
 class LogoutButton : public Button
 {
     Q_OBJECT

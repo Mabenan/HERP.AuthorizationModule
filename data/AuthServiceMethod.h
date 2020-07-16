@@ -1,10 +1,10 @@
 #ifndef AUTHSERVICEMETHOD_H
 #define AUTHSERVICEMETHOD_H
 
-#include <HERP.AuthorizationModule.Precompiled.h>
+
 #include <QString>
 #include <QxOrm.h>
-#include <data/AuthObject.h>
+#include <AuthObject.h>
 
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT AuthServiceMethod : public qx::IxPersistable
 {

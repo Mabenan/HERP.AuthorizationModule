@@ -6,7 +6,7 @@
  */
 
 #include <command/AuthProvider.h>
-#include <data/AuthUser.h>
+#include <AuthUser.h>
 
 QString AuthProvider::getName() const {
   return QStringLiteral("HERP.AuthorizationModule");

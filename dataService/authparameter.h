@@ -1,7 +1,7 @@
 #ifndef AUTHPARAMETER_H
 #define AUTHPARAMETER_H
 
-#include <HERP.AuthorizationModule.Precompiled.h>
+
 
 #ifdef _APP_CLIENT
 class HERP_AUTHORIZATION_MODULE_DLL_EXPORT UserInformation : public QObject

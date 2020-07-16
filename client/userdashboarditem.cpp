@@ -1,7 +1,7 @@
 #include "userdashboarditem.h"
-#include <dataService/AuthServiceMethodModelService.h>
-#include <dataService/AuthUserService.h>
-#include <dataService/authparameter.h>
+#include <AuthServiceMethodModelService.h>
+#include <AuthUserService.h>
+#include <authparameter.h>
 UserDashboardItem::UserDashboardItem(ApplicationClientInterface *app,
                                      QObject *parent)
     : DashboardItem(parent) {

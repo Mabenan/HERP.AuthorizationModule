@@ -1,7 +1,7 @@
 #ifndef ADDUSERCOMMAND_H
 #define ADDUSERCOMMAND_H
 
-#include <HERP.AuthorizationModule.Precompiled.h>
+
 #include <QObject>
 #include <CommandInterface.h>
 class AddUserCommand : public CommandInterface

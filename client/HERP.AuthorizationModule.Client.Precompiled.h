@@ -11,7 +11,7 @@
 #include <QxOrm.h>
 #include <QxServices.h>
 #include <QxHttpServer/QxHttpServer.h>
-#include "export.h"
+#include <exportClient.h>
 #include <QxModelView.h>
 #include <qxinputparameterbase.h>
 #include <qxoutputparamaterbase.h>
