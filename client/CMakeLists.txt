@@ -41,6 +41,7 @@ add_library(${target} SHARED ${SRC} herpAuthorizationModule.qrc)
 if(COMMAND target_precompile_headers)
 target_precompile_headers(${target}
  PUBLIC
+  "../export.h"
   "../HERP.AuthorizationModule.Precompiled.h"
  )
  endif()
