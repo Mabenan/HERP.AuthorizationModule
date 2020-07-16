@@ -15,7 +15,7 @@ if(UNIX)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/plugins/server)
 endif()
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/dataservice ${CMAKE_CURRENT_SOURCE_DIR}/data)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/dataService ${CMAKE_CURRENT_SOURCE_DIR}/data)
 
 file(GLOB SRC
     "*.cpp"
